@@ -1,0 +1,17 @@
+# The following are the packages required to run the Flask app and the machine learning model for predicting Alibaba stock prices.
+# Make sure to install these packages in your Python environment.
+# You can install them using pip in your terminal or command prompt with the following command:
+        # pip install -r requirements.txt
+
+flask
+pandas
+numpy
+seaborn
+scikit-learn
+matplotlib
+tensorflow
+plotly
+nbformat>=4.2.0
+xgboost
+joblib
+gunicorn
