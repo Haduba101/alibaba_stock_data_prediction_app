@@ -1,9 +1,3 @@
-''' **Building the Flask Application**
-
-This app will have an endpoint that accepts new stock data,
- preprocesses it using the saved scaler, 
- makes predictions with the saved SVM model, 
- and returns the predicted close price.'''
 
 # import the necessary libraries
 
