@@ -9,7 +9,6 @@ numpy
 seaborn
 scikit-learn
 matplotlib
-tensorflow
 plotly
 nbformat>=4.2.0
 xgboost
