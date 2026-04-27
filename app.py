@@ -2,7 +2,6 @@
 # import the necessary libraries
 
 import os
-
 import pandas as pd
 import numpy as np
 import joblib
@@ -11,8 +10,13 @@ from flask import Flask, request, jsonify
 app = Flask(__name__)
 
 # Load the trained model and scaler
-svm_model = joblib.load('svm_model.pkl')
-scaler = joblib.load('scaler.pkl')
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+model_path = os.path.join(BASE_DIR, 'svm_model.pkl')
+scaler_path = os.path.join(BASE_DIR, 'scaler.pkl')
+
+svm_model = joblib.load(model_path)
+scaler = joblib.load(scaler_path)
 
 # Define the features that were used for training (must match the order)
 features_list = [
@@ -41,21 +45,20 @@ def predict():
         input_df = input_df[features_list]
 
         # Scale the input features
-        input_scaled = scaler.transform(input_df)
+        input_scaled = scaler.transform(input_df.values)
 
         # Make prediction
         prediction = svm_model.predict(input_scaled)
 
-        return jsonify({'predicted_close_price': prediction[0]})
+        return jsonify({'predicted_close_price': float(prediction[0])})
     except Exception as e:
         return jsonify({'error': str(e)}), 400
 
 @app.route('/')
 def home():
-    return "Welcome to the Stock Price Prediction API! Send POST requests to /predict with stock data."
+    return "Stock Price Prediction API 📈"
 
     # Run Flask app
-import os
 
 if __name__ == '__main__':
     port = int(os.environ.get("PORT", 5000))
